@@ -1,0 +1,47 @@
+import cv2 as cv
+import numpy as np
+
+canvas = np.zeros((500, 500, 3), dtype= "uint8")
+
+# print(np.full.__doc__)
+web = cv.VideoCapture(0)
+# cv.imshow("Hello Dear", web)
+while True:
+    booli, frame = web.read()
+    cv.putText(frame, "Press 'E' on your keyboard" ,(90,450), cv.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 3 )
+    cv.circle(frame, (int(frame.shape[1]/2 - 105), int(frame.shape[0]/2 + 200)), 30, (0,255,255), 3)
+    cv.imshow("Hello Dear", frame)
+    if(cv.waitKey(1) & 0xFF == ord('e')):
+        break
+
+cv.line(canvas, (100,100), (150,100), (0,0,255), 3)
+cv.line(canvas, (100,200), (150,200), (0,0,255), 3)
+cv.line(canvas, (125,100), (125,200), (0,0,255), 3)
+
+cv.line(canvas, (200,100), (230,100), (0,0,255), 3)
+cv.line(canvas, (270,100), (300,100), (0,0,255), 3)
+cv.line(canvas, (230,100), (250,130), (0,0,255), 3)
+cv.line(canvas, (270,100), (250,130), (0,0,255), 3)
+cv.line(canvas, (200,100), (200,130), (0,0,255), 3)
+cv.line(canvas, (300,100), (300,130), (0,0,255), 3)
+cv.line(canvas, (200,130), (250,200), (0,0,255), 3)
+cv.line(canvas, (300,130), (250,200), (0,0,255), 3)
+
+
+cv.line(canvas, (350,100), (350,200), (0,0,255), 3)
+cv.line(canvas, (410,100), (410,200), (0,0,255), 3)
+cv.line(canvas, (350,200), (410,200), (0,0,255), 3)
+
+
+blank = np.zeros((500,500,3), dtype= "uint8")
+for r in range(0,200,25):
+    cv.circle(blank, (250,250),r, (255,255,255), 2)
+
+cv.imshow("circles", blank)
+
+
+cv.imshow("canvas", canvas)
+cv.waitKey(0)
+
+web.release()
+cv.destroyAllWindows()
